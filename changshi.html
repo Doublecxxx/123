@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>    
+        <input type="text">
+    <script>    
+        let inp = document.querySelector("input");    
+        inp.oninput = debounce(
+            function()/*真正业务（输入的内容）*/{
+            console.log(this.value);
+        },500)
+        
+        /*闭包*/function debounce/*外部函数*/
+        (fn/*形参*/,delay){
+            let t = null;
+            return function()/*内部函数*/{
+                if(t !== null){
+                    clearTimeout(t);
+                }/*防抖算法*/
+                t = setTimeout(() => {
+                    fn.call/*通过call改变this*/(this);
+                },delay)
+            }
+        }
+        </script>
+    </body>
+</body>
+
+</html>
